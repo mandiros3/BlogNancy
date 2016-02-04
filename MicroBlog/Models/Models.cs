@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Web;
 
 namespace MicroBlog.Models
@@ -10,4 +11,13 @@ namespace MicroBlog.Models
     {
         public string Title { get; set; }
     }
+
+    public class Note
+    {
+        public string title { get; set; }
+        public string postContent { get; set; }
+        public string date { get; set; }
+      
+    }
+
 }
