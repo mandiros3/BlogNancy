@@ -21,30 +21,31 @@ namespace MicroBlog.Modules
             // Everything else is simple and self explanatory to understand.
 
             
-            
-            Get["/"] = o =>
-
-            {
-               
-                return View["Views/Pages/Home"];
-
-            };
-            Get["/write"] = o =>
-
-            {
-                
-                return View["Views/Pages/Write"];
-
-            };
-            Get["/login"] = o =>
-
-            {
-                
-                return View["Views/Pages/Login"];
-
-            };
-
+            //Todo Maybe put all routes into their own file/model
+            Get["/"] = Home;
+            Get["/write"] = Write;
+            Get["/login"] = Login;
 
         }
+
+        //Actions Methods here: So the contructor doesn't get bloated.
+
+        private dynamic Home(dynamic o)
+        {
+            return View["Views/Pages/Home"];
+        }
+        private dynamic Write(dynamic o)
+        {
+            return View["Views/Pages/Write"];
+        }
+        private dynamic Login(dynamic o)
+        {
+            return View["Views/Pages/Login"];
+        }
+
+
+
+
+
     }
 }
