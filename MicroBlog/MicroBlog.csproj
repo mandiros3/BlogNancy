@@ -90,13 +90,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Views\Pages\Home.cshtml" />
-    <None Include="Views\Pages\Login.cshtml" />
-    <None Include="Views\Layouts\Master.cshtml" />
-    <None Include="Views\Layouts\Menu.cshtml">
+    <Content Include="Views\Pages\Home.cshtml" />
+    <Content Include="Views\Pages\Login.cshtml" />
+    <Content Include="Views\Layouts\Master.cshtml" />
+    <Content Include="Views\Layouts\Menu.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Views\Pages\Write.cshtml" />
+    </Content>
+    <Content Include="Views\Pages\Write.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
