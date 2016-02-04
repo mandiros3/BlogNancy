@@ -1,0 +1,32 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>@ViewBag.title</title>
+
+       
+    </head>
+    <body>
+        <div id="nav">
+
+            
+            <h1>Menu</h1>
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/write">Write</a>
+                </li>
+                <li>
+                    <a href="/login">Login</a>
+                </li>
+
+            </ul>
+
+         
+        </div>
+
+    @RenderBody()
+    </body>
+</html>

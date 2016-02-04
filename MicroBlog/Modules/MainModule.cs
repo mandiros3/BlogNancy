@@ -19,27 +19,28 @@ namespace MicroBlog.Modules
             // Routes simply return a view associated with the request
             // Simple Login, view, write. 
             // Everything else is simple and self explanatory to understand.
+
             
             
             Get["/"] = o =>
 
             {
-                var title = new ShowTitle {Title = "Read"};
-                return View["Views/Home", title];
+               
+                return View["Views/Pages/Home"];
 
             };
             Get["/write"] = o =>
 
             {
-                var title = new ShowTitle {Title = "Write"};
-                return View["Views/Write", title];
+                
+                return View["Views/Pages/Write"];
 
             };
             Get["/login"] = o =>
 
             {
-                var title = new ShowTitle {Title = "Login"};
-                return View["Views/Login", title];
+                
+                return View["Views/Pages/Login"];
 
             };
 

@@ -27,3 +27,7 @@ c:\users\andi milhomme.corp2000\documents\visual studio 2015\Projects\MicroBlog\
 c:\users\andi milhomme.corp2000\documents\visual studio 2015\Projects\MicroBlog\MicroBlog\bin\Nancy.Owin.dll
 c:\users\andi milhomme.corp2000\documents\visual studio 2015\Projects\MicroBlog\MicroBlog\bin\Nancy.xml
 c:\users\andi milhomme.corp2000\documents\visual studio 2015\Projects\MicroBlog\MicroBlog\bin\Nancy.Owin.xml
+C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\Nancy.ViewEngines.Razor.dll
+C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\System.Web.Razor.dll
+C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\Nancy.ViewEngines.Razor.xml
+C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\System.Web.Razor.xml
