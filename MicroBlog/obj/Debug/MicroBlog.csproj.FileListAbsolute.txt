@@ -31,3 +31,4 @@ C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\
 C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\System.Web.Razor.dll
 C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\Nancy.ViewEngines.Razor.xml
 C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\System.Web.Razor.xml
+C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\Views\Layouts\Menu.cshtml

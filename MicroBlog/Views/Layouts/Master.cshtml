@@ -3,13 +3,15 @@
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>@ViewBag.title</title>
-
-       
-    </head>
+        <link href="~/Assets/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <head>
     <body>
-    @RenderSection("header", required: false)
-        
-
-    @RenderBody()
+        <div class="container">
+            <!--Todo find a way to shorten the paths, encapsulate in a helper class. or see if it's auto discoverable-->
+            @Html.Partial("Views/Layouts/Menu.cshtml")
+            <hr />
+            @RenderBody()
+        </div>
     </body>
+
 </html>

@@ -6,7 +6,7 @@ using MicroBlog.Models;
 using Nancy;
 using Nancy.Routing;
 using Nancy.ModelBinding;
-
+using Nancy.ViewEngines;
 namespace MicroBlog.Modules
 {
     public class MainModule : NancyModule
@@ -30,6 +30,8 @@ namespace MicroBlog.Modules
 
         //Actions Methods here: So the contructor doesn't get bloated.
 
+
+        //Nancy will look for a razor file with  a file name that matches the class name of the viewmodel.
         private dynamic Home(dynamic o)
         {
             return View["Views/Pages/Home"];

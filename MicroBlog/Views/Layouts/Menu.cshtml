@@ -1,22 +1,16 @@
-﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
-@{
-  Layout = "Views/Layouts/Master.cshtml";
-}
-
-@section header{
-
+﻿
 <div id="nav">
 
 
     <h1>Menu</h1>
-    <ul>
-        <li>
-            <a href="/">Home</a>
+    <ul class="nav nav-pills">
+        <li role="presentation">
+            <a href="/">Read</a>
         </li>
-        <li>
+        <li role="presentation">
             <a href="/write">Write</a>
         </li>
-        <li>
+        <li role="presentation">
             <a href="/login">Login</a>
         </li>
 
@@ -25,6 +19,4 @@
 
 </div>
 
-
-}
 
