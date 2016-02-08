@@ -21,7 +21,7 @@ namespace MicroBlog.Modules
             // Everything else is simple and self explanatory to understand.
 
 
-            //Todo Maybe put all routes into their own file/model
+            //Todo Maybe put all routes into their own file/model if it gets big enough
 
             //Get Requests
             Get["/"] = Home;
