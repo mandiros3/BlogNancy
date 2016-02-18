@@ -2,7 +2,7 @@
 namespace MicroBlog.Models
 {
 
-    public class Note
+    public class Post
     {
         public string ID { get; set; }
         public string Title { get; set; }

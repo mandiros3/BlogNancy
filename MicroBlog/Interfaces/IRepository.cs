@@ -4,7 +4,7 @@ using MicroBlog.Models;
 
 namespace MicroBlog.Interfaces
 {
-    public interface IPostRepository
+    public interface IRepository
     {
         List<Post> GetAll();
 
