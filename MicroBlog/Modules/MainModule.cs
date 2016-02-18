@@ -30,7 +30,7 @@ namespace MicroBlog.Modules
             Get["/login"] = Login;
 
             //Post Requests
-            Post["/write"] = Write;
+            
 
         }
 
@@ -40,30 +40,17 @@ namespace MicroBlog.Modules
         //Nancy will look for a razor file with  a file name that matches the class name of the viewmodel.
         private dynamic Home(dynamic o)
         {
-                return View["Views/Pages/Home"];
+                return View["Views/Pages/Home", ];
            
 
         }
 
         private dynamic Write(dynamic o)
         {
-
-   
-            if (Request.Method == "GET")
-            {
+       
                 return View["Views/Pages/Write"];
-            }
-            if (Request.Method == "POST")
-            {
-                Note note = this.Bind();
-
-                return note.postContent;
-
-            }
-            else
-            {
-                return "ehy";
-            }
+          
+           
         }
 
         private dynamic Login(dynamic o)

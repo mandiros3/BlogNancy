@@ -32,3 +32,11 @@ C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\
 C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\Nancy.ViewEngines.Razor.xml
 C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\System.Web.Razor.xml
 C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\Views\Layouts\Menu.cshtml
+C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\EntityFramework.dll
+C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\EntityFramework.SqlServer.dll
+C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\System.Data.SQLite.dll
+C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\System.Data.SQLite.EF6.dll
+C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\System.Data.SQLite.Linq.dll
+C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\EntityFramework.xml
+C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\EntityFramework.SqlServer.xml
+C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\System.Data.SQLite.xml
