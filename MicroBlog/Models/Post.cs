@@ -6,6 +6,7 @@ namespace MicroBlog.Models
     {
         public string ID { get; set; }
         public string Title { get; set; }
+        public string Date { get; set; }
         public string Content { get; set; }
       
     }
