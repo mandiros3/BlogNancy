@@ -30,7 +30,15 @@ namespace MicroBlog.Modules
             Get["/login"] = Login;
 
             //Post Requests
-            
+            Put["/{id:int}"] = parameters =>
+            {
+                return HttpStatusCode.NotImplemented;
+            };
+
+            Delete["/{id:int}"] = x =>
+            {
+                return HttpStatusCode.NotImplemented;
+            };
 
         }
 
