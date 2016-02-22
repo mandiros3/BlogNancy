@@ -4,6 +4,7 @@ using MicroBlog.Models;
 using System.Data.SQLite;
 using System.IO;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MicroBlog.DataProviders
 {
@@ -69,7 +70,7 @@ namespace MicroBlog.DataProviders
                                 post.ID = reader["Id"].ToString();
                                 post.Date = reader["Date"].ToString();
                                 post.Title = reader["Title"].ToString();
-                                post.Content = reader["Id"].ToString();
+                                post.Content = reader["Content"].ToString();
 
                                 allPosts.Add(post);
 
@@ -97,7 +98,7 @@ namespace MicroBlog.DataProviders
         /// <returns>A post of id n </returns>
         public Post Get(int id)
         {
-            List<Post> _post = new List<Post>();
+            Post post = new Post();
             try
             {
 
@@ -108,21 +109,16 @@ namespace MicroBlog.DataProviders
 
                     string query = $"select{id} from Posts";
 
-
                     using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                     {
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
-                            {
-                                Post post = new Post();
-
+                            { 
                                 post.ID = reader["Id"].ToString();
                                 post.Date = reader["Date"].ToString();
                                 post.Title = reader["Title"].ToString();
                                 post.Content = reader["Id"].ToString();
-
-                               _post.Add(post);
 
                             }
                         }
@@ -137,7 +133,7 @@ namespace MicroBlog.DataProviders
             {
 
             }
-            return _post;
+            return post;
         }
 
         public Post Create(Post post)
