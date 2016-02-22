@@ -47,31 +47,97 @@ namespace MicroBlog.DataProviders
         /// <returns> A list of type Post</returns>
         public List<Post> GetAll()
         {
-            using (var conn = new SQLiteConnection(Connectionstring))
-            {
-                conn.Open();
+            List<Post> allPosts = new List<Post>();
 
-                string query = "select * from Posts order by date desc";
-                var p = conn.GetAll<Post>().ToList();
 
-                conn.Close();
+            try {
+                using (var conn = new SQLiteConnection(Connectionstring))
+                {
+                    conn.Open();
 
-                return p;
+                    string query = "select * from Posts order by date desc";
+
+
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                    {
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Post post = new Post();
+
+                                post.ID = reader["Id"].ToString();
+                                post.Date = reader["Date"].ToString();
+                                post.Title = reader["Title"].ToString();
+                                post.Content = reader["Id"].ToString();
+
+                                allPosts.Add(post);
+
+                            }
+                        }
+                    }
+
+                    
+                    conn.Close();
+
+
+                }
             }
+            catch (SQLiteException e)
+            {
+              
+            }
+            return allPosts;
         }
 
+        /// <summary>
+        /// Get a post from an ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A post of id n </returns>
         public Post Get(int id)
         {
+            List<Post> _post = new List<Post>();
+            try
+            {
+
+            
             using (var conn = new SQLiteConnection(Connectionstring))
             {
                 conn.Open();
 
-                var p = conn.Get<Post>(id);
+                    string query = $"select{id} from Posts";
 
-                conn.Close();
 
-                return p;
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                    {
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Post post = new Post();
+
+                                post.ID = reader["Id"].ToString();
+                                post.Date = reader["Date"].ToString();
+                                post.Title = reader["Title"].ToString();
+                                post.Content = reader["Id"].ToString();
+
+                               _post.Add(post);
+
+                            }
+                        }
+                    }
+
+                    conn.Close();
+
+              
             }
+            }
+            catch (SQLiteException e)
+            {
+
+            }
+            return _post;
         }
 
         public Post Create(Post post)
