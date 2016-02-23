@@ -107,7 +107,8 @@ namespace MicroBlog.DataProviders
             {
                 conn.Open();
 
-                    string query = $"select{id} from Posts";
+                    //string query = $"select {id} from Posts";
+                    string query = $"select * from Posts where Id = {id}";
 
                     using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                     {
@@ -136,6 +137,11 @@ namespace MicroBlog.DataProviders
             return post;
         }
 
+        /// <summary>
+        /// Create a new blog post.
+        /// </summary>
+        /// <param name="post"></param>
+        /// <returns></returns>
         public Post Create(Post post)
         {
             if (post == null)
@@ -146,6 +152,10 @@ namespace MicroBlog.DataProviders
             using (var conn = new SQLiteConnection(Connectionstring))
             {
                 conn.Open();
+
+                string query = ($"insert into Posts ()");
+
+
 
                 var postid = conn.Insert(post);
                 post.Id = (int)postid;
