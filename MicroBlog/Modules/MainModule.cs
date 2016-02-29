@@ -48,7 +48,7 @@ namespace MicroBlog.Modules
         //Nancy will look for a razor file with  a file name that matches the class name of the viewmodel.
         private dynamic Home(dynamic o)
         {
-                return View["Views/Pages/Home", ];
+                return View["Views/Pages/Home"];
            
 
         }

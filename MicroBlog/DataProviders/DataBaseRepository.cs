@@ -67,7 +67,7 @@ namespace MicroBlog.DataProviders
                             {
                                 Post post = new Post();
 
-                                post.ID = reader["Id"].ToString();
+                                post.ID = (int) reader["ID"];
                                 post.Date = reader["Date"].ToString();
                                 post.Title = reader["Title"].ToString();
                                 post.Content = reader["Content"].ToString();
@@ -115,8 +115,8 @@ namespace MicroBlog.DataProviders
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
-                            { 
-                                post.ID = reader["Id"].ToString();
+                            {
+                                post.ID = (int) reader["Id"];
                                 post.Date = reader["Date"].ToString();
                                 post.Title = reader["Title"].ToString();
                                 post.Content = reader["Id"].ToString();
@@ -144,6 +144,8 @@ namespace MicroBlog.DataProviders
         /// <returns></returns>
         public Post Create(Post post)
         {
+            
+
             if (post == null)
             {
                 return null;
@@ -152,64 +154,67 @@ namespace MicroBlog.DataProviders
             using (var conn = new SQLiteConnection(Connectionstring))
             {
                 conn.Open();
-
-                string query = ($"insert into Posts ()");
-
-
-
-                var postid = conn.Insert(post);
-                post.Id = (int)postid;
-
-                conn.Close();
-            }
-
-            return post.Id > 0 ? post : null;
-        }
-
-        public async Task<Post> Update(Post post)
-        {
-            if (post == null)
-            {
-                return null;
-            }
-
-            bool result;
-            using (var conn = new SQLiteConnection(Connectionstring))
-            {
-                conn.Open();
-
-                result = await conn.UpdateAsync(post);
-
-                conn.Close();
-            }
-
-            return result ? post : null;
-        }
-
-        public bool Delete(int id)
-        {
-            bool result = false;
-
-            if (id > 0)
-            {
-
-                using (var conn = new SQLiteConnection(Connectionstring))
+                string query = ($"insert into Posts (Title, Content) values ({post.Title}, {post.Content})");
+                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                 {
-                    conn.Open();
-
-                    var item = conn.Get<Post>(id);
-
-                    if (item != null)
-                    {
-                        result = conn.Delete(item);
-                    }
-
-                    conn.Close();
+                    cmd.ExecuteNonQuery();
                 }
+
+
+
+                 
+            
+                conn.Close();
             }
 
-            return result;
+            return post.ID > 0 ? post : null;
         }
+
+        //    public async Task<Post> Update(Post post)
+        //    {
+        //        if (post == null)
+        //        {
+        //            return null;
+        //        }
+
+        //        bool result;
+        //        using (var conn = new SQLiteConnection(Connectionstring))
+        //        {
+        //            conn.Open();
+
+        //            result = await conn.UpdateAsync(post);
+
+        //            conn.Close();
+        //        }
+
+        //        return result ? post : null;
+        //    }
+
+        //    public bool Delete(int id)
+        //    {
+        //        bool result = false;
+
+        //        if (id > 0)
+        //        {
+
+        //            using (var conn = new SQLiteConnection(Connectionstring))
+        //            {
+        //                conn.Open();
+
+        //                var item = conn.Get<Post>(id);
+
+        //                if (item != null)
+        //                {
+        //                    result = conn.Delete(item);
+        //                }
+
+        //                conn.Close();
+        //            }
+        //        }
+
+        //        return result;
+        //    }
+
     }
 
 
