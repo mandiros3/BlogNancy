@@ -7,6 +7,7 @@ using Nancy;
 using Nancy.Routing;
 using Nancy.ModelBinding;
 using Nancy.ViewEngines;
+
 namespace MicroBlog.Modules
 {
     public class MainModule : NancyModule
@@ -48,7 +49,13 @@ namespace MicroBlog.Modules
         //Nancy will look for a razor file with  a file name that matches the class name of the viewmodel.
         private dynamic Home(dynamic o)
         {
-                return View["Views/Pages/Home"];
+
+            var _post = new Post();
+            _post.Title = o.title;
+            _post.Content = o.content;
+
+
+                return View["Views/Pages/Home", _post];
            
 
         }
