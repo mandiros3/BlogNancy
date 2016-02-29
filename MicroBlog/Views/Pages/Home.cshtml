@@ -1,11 +1,15 @@
-﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MicroBlog.Models.Post>
+  
     
 @{
     Layout = "Views/Layouts/Master.cshtml";
     ViewBag.Title = "Home";
-
+   
 }
 
 <h1>Read</h1>
+
+<h2>@Model.Title</h2>
+<p>@Model.Content</p>
 
 

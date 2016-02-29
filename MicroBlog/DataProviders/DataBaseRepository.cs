@@ -25,8 +25,8 @@ namespace MicroBlog.DataProviders
                 {
                     SQLiteConnection.CreateFile("microblog.sqlite");
 
-                } 
-                
+                }
+                conn.Open();
                 //Creating a Table
                 string query = "create table IF NOT EXISTS Posts (Id INTEGER PRIMARY KEY, Date VARCHAR NOT NULL DEFAULT CURRENT_DATE, Title nvarchar(255), Content nvarchar(1000) not null) ";
                 SQLiteCommand command = new SQLiteCommand(query, conn);
