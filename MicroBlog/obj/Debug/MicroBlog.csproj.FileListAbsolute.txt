@@ -40,3 +40,6 @@ C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\
 C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\EntityFramework.xml
 C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\EntityFramework.SqlServer.xml
 C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\MicroBlog\MicroBlog\bin\System.Data.SQLite.xml
+V:\Source Code\GitHub-Repo\BlogNancy\MicroBlog\obj\Debug\MicroBlog.csprojResolveAssemblyReference.cache
+V:\Source Code\GitHub-Repo\BlogNancy\MicroBlog\obj\Debug\MicroBlog.dll
+V:\Source Code\GitHub-Repo\BlogNancy\MicroBlog\obj\Debug\MicroBlog.pdb
