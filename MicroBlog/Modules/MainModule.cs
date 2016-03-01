@@ -9,13 +9,14 @@ using Nancy.ModelBinding;
 using Nancy.ViewEngines;
 using MicroBlog.Interfaces;
 using MicroBlog.DataProviders;
+using Nancy.ViewEngines.Razor;
 
 namespace MicroBlog.Modules
 {
     public class MainModule : NancyModule
     {
 
-
+        
         IRepository _post = new DataBaseRepository();
 
         public MainModule()
@@ -55,23 +56,17 @@ namespace MicroBlog.Modules
         //Nancy will look for a razor file with  a file name that matches the class name of the viewmodel.
         private dynamic Home(dynamic o)
         {
-            
-         
            
-          
-
-
-                return View["Views/Pages/Home", _post.GetAll()];
+            List<Post> postList = _post.GetAll();
            
 
+                return View["Views/Pages/Home.cshtml", postList];
         }
 
         private dynamic Write(dynamic o)
         {
        
                 return View["Views/Pages/Write"];
-          
-           
         }
 
         private dynamic Login(dynamic o)

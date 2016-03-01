@@ -5,43 +5,47 @@ using System.Data.SQLite;
 using System.IO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MicroBlog;
 
 namespace MicroBlog.DataProviders
 {
     // this class implements the members listed in the interface
     public class DataBaseRepository : IRepository
     {
-
-        private const string DbSource = "microblog.sqlite";
-        private const string Connectionstring = "Data Source=" + DbSource + ";Version=3;New=True;";
+       
+       
+        private  string Connectionstring = "Data Source=" + Startup.dbSource + ";Version=3;New=True;";
 
 
         // Todo use SQL lite for now
         public DataBaseRepository() {
+
             using (var conn = new SQLiteConnection(Connectionstring))
             {
-               
-                if (!File.Exists("microblog.sqlite"))
+                try
                 {
-                    SQLiteConnection.CreateFile("microblog.sqlite");
+                    if (!File.Exists(Startup.dbSource))
+                    {
+                        SQLiteConnection.CreateFile(Startup.dbSource);
 
+                    }
+
+                    conn.Open();
+                    //Creating a Table
+                    string query = "create table IF NOT EXISTS Posts (Id INTEGER PRIMARY KEY, Date VARCHAR NOT NULL DEFAULT CURRENT_DATE, Title nvarchar(255) not null, Content nvarchar(1000) Not NULL) ";
+                    SQLiteCommand command = new SQLiteCommand(query, conn);
+                    command.ExecuteNonQuery();
                 }
-                conn.Open();
-                //Creating a Table
-                string query = "create table IF NOT EXISTS Posts (Id INTEGER PRIMARY KEY, Date VARCHAR NOT NULL DEFAULT CURRENT_DATE, Title nvarchar(255), Content nvarchar(1000) not null) ";
-                SQLiteCommand command = new SQLiteCommand(query, conn);
-                command.ExecuteNonQuery();
+
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
         }
 
 
-        // Creates a connection to database file
-        public static void ConnectDatabase()
-        {
-            return;
-           
-        }
-
+        
         /// <summary>
         /// Gets all the posts from the database
         /// </summary>
@@ -67,7 +71,7 @@ namespace MicroBlog.DataProviders
                             {
                                 Post post = new Post();
 
-                                post.ID = (int) reader["ID"];
+                                post.ID = Convert.ToInt32(reader["Id"]);
                                 post.Date = reader["Date"].ToString();
                                 post.Title = reader["Title"].ToString();
                                 post.Content = reader["Content"].ToString();
@@ -116,7 +120,7 @@ namespace MicroBlog.DataProviders
                         {
                             while (reader.Read())
                             {
-                                post.ID = (int) reader["Id"];
+                                post.ID = Convert.ToInt32(reader["Id"]);
                                 post.Date = reader["Date"].ToString();
                                 post.Title = reader["Title"].ToString();
                                 post.Content = reader["Id"].ToString();
