@@ -1,8 +1,14 @@
 ﻿#Brainstorming
-
+Pay Attention to interfaces
 ##Usesul link :
  https://github.com/jmk22/todo_categories_databases_CRUD/blob/master/Modules/HomeModule.cs
 Great for modules, list many possible scenarios
+*******
++Make it more modular, try to separate view from model more
++Possibly extend this into a mini .net CMS
++Add Custmomization Options
+
+
 *******
 #Menu
   

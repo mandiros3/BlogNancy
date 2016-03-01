@@ -34,7 +34,7 @@ namespace MicroBlog.Modules
           //Get Requests
           Get["/"] = Home;
 
-            Get["/write"] = Write;
+            Post["/write"] = Write;
             Get["/login"] = Login;
 
             //Post Requests
@@ -65,8 +65,10 @@ namespace MicroBlog.Modules
 
         private dynamic Write(dynamic o)
         {
-       
-                return View["Views/Pages/Write"];
+            Post post = this.Bind<Post>();
+            var item = _post.Create(post);
+
+                return View["Views/Pages/Write", item];
         }
 
         private dynamic Login(dynamic o)
