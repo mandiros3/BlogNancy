@@ -41,6 +41,7 @@ namespace MicroBlog.DataProviders
                 {
                     Console.WriteLine(ex.ToString());
                 }
+                conn.Close();
             }
         }
 
@@ -69,12 +70,14 @@ namespace MicroBlog.DataProviders
                         {
                             while (reader.Read())
                             {
-                                Post post = new Post();
+                                Post post = new Post
+                                {
+                                    ID = Convert.ToInt32(reader["Id"]),
+                                    Date = reader["Date"].ToString(),
+                                    Title = reader["Title"].ToString(),
+                                    Content = reader["Content"].ToString()
+                                };
 
-                                post.ID = Convert.ToInt32(reader["Id"]);
-                                post.Date = reader["Date"].ToString();
-                                post.Title = reader["Title"].ToString();
-                                post.Content = reader["Content"].ToString();
 
                                 allPosts.Add(post);
 
@@ -194,30 +197,31 @@ namespace MicroBlog.DataProviders
         //        return result ? post : null;
         //    }
 
-        //    public bool Delete(int id)
-        //    {
-        //        bool result = false;
+          public bool Delete(int id)
+          {
+              bool result = false;
 
-        //        if (id > 0)
-        //        {
+              if (id > 0)
+              {
 
-        //            using (var conn = new SQLiteConnection(Connectionstring))
-        //            {
-        //                conn.Open();
+                  using (var conn = new SQLiteConnection(Connectionstring))
+                  {
+                      conn.Open();
 
-        //                var item = conn.Get<Post>(id);
+                    string query = ($"DELETE FROM Posts WHERE id = {id})");
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
 
-        //                if (item != null)
-        //                {
-        //                    result = conn.Delete(item);
-        //                }
+                    
 
-        //                conn.Close();
-        //            }
-        //        }
+                      conn.Close();
+                  }
+              }
 
-        //        return result;
-        //    }
+              return result;
+          }
 
     }
 

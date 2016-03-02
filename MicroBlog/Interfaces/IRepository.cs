@@ -15,6 +15,6 @@ namespace MicroBlog.Interfaces
 
         //Task<Post> Update(Post post);
 
-      //  bool Delete(int id);
+       bool Delete(int id);
     }
 }

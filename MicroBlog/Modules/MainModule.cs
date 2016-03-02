@@ -31,59 +31,57 @@ namespace MicroBlog.Modules
 
           //Todo Maybe put all routes into their own file/model if it gets big enough
 
-          //Get Requests
+          //Requests call these methods
           Get["/"] = Home;
-            Get["/write"] = Write;
-            Post["/write"] = x =>
-            {
-
-                var post = this.Bind<Post>();
-                _post.Create(post);
-                return Response.AsRedirect("/");
-            };
+            Get["/write"] = Write_GET;
+            Post["/write"] = Write_POST;
             Get["/login"] = Login;
 
-            //Post Requests
-            Put["/{id:int}"] = parameters =>
+            //I better make it async so the web app can continue while it's being updated in the background
+            //TODO insert success or failure message
+            Put["/edit/{id:int}"] = parameters =>
             {
                 return HttpStatusCode.NotImplemented;
             };
 
-            Delete["/{id:int}"] = x =>
+            //Note: This line made me include Microsoft.CSharp as a reference.
+            Delete["/delete/{id:int}"] = param =>
             {
-                return HttpStatusCode.NotImplemented;
+                int result = param.id;
+                _post.Delete(result);
+                return Response.AsRedirect("/");
+
+
             };
 
         }
 
         //Actions Methods here: So the contructor doesn't get bloated.
-
-
         //Nancy will look for a razor file with  a file name that matches the class name of the viewmodel.
         private dynamic Home(dynamic o)
         {
-           
             List<Post> postList = _post.GetAll();
-           
-
                 return View["Views/Pages/Home.cshtml", postList];
         }
 
-        private dynamic Write(dynamic o)
+        private dynamic Write_GET(dynamic o)
         {
-
             var post = new Post();
                 return View["Views/Pages/Write", post];
+        }
+
+        public dynamic Write_POST(dynamic o)
+        {
+            //Binds model to view
+            var post = this.Bind<Post>();
+            _post.Create(post);
+            return Response.AsRedirect("/");
         }
 
         private dynamic Login(dynamic o)
         {
             return View["Views/Pages/Login"];
         }
-
-
-
-
 
     }
 }

@@ -1,4 +1,4 @@
-﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IList<MicroBlog.Models.Post>>
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<System.Collections.Generic.IList<MicroBlog.Models.Post>>
 
 
     
@@ -15,6 +15,11 @@
 {
     <h3>@item.Title</h3>
     <p>@item.Content</p>
+    <a href="/edit/@item.ID">Edit</a>
+    <form>
+        
+    </form>
+    <a href="/delete/@item.ID">Delete</a>
 }
 
 
