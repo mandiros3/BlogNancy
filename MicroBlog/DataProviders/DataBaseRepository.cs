@@ -158,7 +158,7 @@ namespace MicroBlog.DataProviders
             using (var conn = new SQLiteConnection(Connectionstring))
             {
                 conn.Open();
-                string query = ($"insert into Posts (Title, Content) values ({post.Title}, {post.Content})");
+                string query = ($"insert into Posts (Title, Content) values ('{post.Title}', '{post.Content}')");
                 using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.ExecuteNonQuery();
