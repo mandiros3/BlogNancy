@@ -10,16 +10,17 @@
 
 }
 
-<h2>Post</h2>
+<h2>Posts</h2>
 @foreach (var item in  Model)
 {
     <h3>@item.Title</h3>
     <p>@item.Content</p>
     <a href="/edit/@item.ID">Edit</a>
-    <form>
-        
-    </form>
-    <a href="/delete/@item.ID">Delete</a>
+
+  
+        <a href="/@item.ID">Delete</a>
+   
+    
 }
 
 

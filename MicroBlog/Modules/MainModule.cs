@@ -29,9 +29,9 @@ namespace MicroBlog.Modules
           // Everything else is simple and self explanatory to understand.
 
 
-          //Todo Maybe put all routes into their own file/model if it gets big enough
+          // this.RequiresAuthentication(). Make that function after everything works properly
 
-          //Requests call these methods
+          //Requests will call these methods
           Get["/"] = Home;
             Get["/write"] = Write_GET;
             Post["/write"] = Write_POST;
@@ -45,13 +45,11 @@ namespace MicroBlog.Modules
             };
 
             //Note: This line made me include Microsoft.CSharp as a reference.
-            Delete["/delete/{id:int}"] = param =>
+            Delete["/{id:int}"] = param =>
             {
-                int result = param.id;
-                _post.Delete(result);
-                return Response.AsRedirect("/");
-
-
+                int id = param.id;
+                var result = _post.Delete(id);
+                return (result) ? HttpStatusCode.OK : HttpStatusCode.InternalServerError;
             };
 
         }

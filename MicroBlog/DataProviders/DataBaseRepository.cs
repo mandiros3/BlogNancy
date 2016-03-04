@@ -6,7 +6,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MicroBlog;
-
+using System.Linq;
 namespace MicroBlog.DataProviders
 {
     // this class implements the members listed in the interface
@@ -103,7 +103,7 @@ namespace MicroBlog.DataProviders
         /// </summary>
         /// <param name="id"></param>
         /// <returns>A post of id n </returns>
-        public Post Get(int id)
+        public  Post Get(int id)
         {
             Post post = new Post();
             try
@@ -119,6 +119,7 @@ namespace MicroBlog.DataProviders
 
                     using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                     {
+                        
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -200,28 +201,39 @@ namespace MicroBlog.DataProviders
           public bool Delete(int id)
           {
               bool result = false;
+            try
+            {
 
-              if (id > 0)
-              {
 
-                  using (var conn = new SQLiteConnection(Connectionstring))
-                  {
-                      conn.Open();
+                if (id > 0)
+                {
 
-                    string query = ($"DELETE FROM Posts WHERE id = {id})");
-                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                    using (var conn = new SQLiteConnection(Connectionstring))
                     {
-                        cmd.ExecuteNonQuery();
+                        conn.Open();
+
+                        string query = ($"DELETE FROM Posts WHERE id = {id})");
+                        using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+
+
+
+                        conn.Close();
+                        result = true;
                     }
+                }
 
-                    
+                
+            }
+            catch(Exception e) {
+                
+            }
 
-                      conn.Close();
-                  }
-              }
+            return result;
 
-              return result;
-          }
+        }
 
     }
 
