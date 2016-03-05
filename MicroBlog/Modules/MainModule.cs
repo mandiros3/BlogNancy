@@ -15,15 +15,12 @@ namespace MicroBlog.Modules
 {
     public class MainModule : NancyModule
     {
-
-        
+    
         IRepository _post = new DataBaseRepository();
 
         public MainModule()
         {
             //Instantiate a new class that handles the database, implements the methods in the interface
-         
-
           // Routes simply return a view associated with the request
           // Simple Login, view, write. 
           // Everything else is simple and self explanatory to understand.
@@ -31,7 +28,7 @@ namespace MicroBlog.Modules
 
           //Todo Maybe put all routes into their own file/model if it gets big enough
 
-          //Requests call these methods
+          //The requests will call these methods
           Get["/"] = Home;
             Get["/write"] = Write_GET;
             Post["/write"] = Write_POST;
@@ -50,7 +47,6 @@ namespace MicroBlog.Modules
                 int result = param.id;
                 _post.Delete(result);
                 return Response.AsRedirect("/");
-
 
             };
 

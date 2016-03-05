@@ -1,5 +1,7 @@
 ﻿#Brainstorming
 Pay Attention to interfaces
+Make sure I sanitize input
+Form validation also.
 ##Usesul link :
  https://github.com/jmk22/todo_categories_databases_CRUD/blob/master/Modules/HomeModule.cs
 Great for modules, list many possible scenarios

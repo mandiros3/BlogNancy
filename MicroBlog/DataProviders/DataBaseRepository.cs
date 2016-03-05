@@ -20,6 +20,8 @@ namespace MicroBlog.DataProviders
         // Todo use SQL lite for now
         public DataBaseRepository() {
 
+            //Create a database if it doesn't exist, create a table with these columns
+            //==== So that it automatically happens whenever this class is instantiated.
             using (var conn = new SQLiteConnection(Connectionstring))
             {
                 try
@@ -63,7 +65,7 @@ namespace MicroBlog.DataProviders
 
                     string query = "select * from Posts order by date desc";
 
-
+                    // Read to the rows in the table, assign to class variables. Add to list of objects.
                     using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                     {
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
@@ -117,6 +119,7 @@ namespace MicroBlog.DataProviders
                     //string query = $"select {id} from Posts";
                     string query = $"select * from Posts where Id = {id}";
 
+                    //Todo There has to be a simpler way. Because I'm just fetching a single row
                     using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                     {
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
@@ -145,7 +148,7 @@ namespace MicroBlog.DataProviders
         }
 
         /// <summary>
-        /// Create a new blog post.
+        /// Create a new entry in the database.
         /// </summary>
         /// <param name="post"></param>
         /// <returns></returns>
@@ -165,12 +168,7 @@ namespace MicroBlog.DataProviders
                 using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.ExecuteNonQuery();
-                }
-
-
-
-                 
-            
+                }  
                 conn.Close();
             }
 
@@ -214,8 +212,8 @@ namespace MicroBlog.DataProviders
                         cmd.ExecuteNonQuery();
                     }
 
-                    
 
+                      result = true;
                       conn.Close();
                   }
               }
