@@ -3,13 +3,14 @@ Pay Attention to interfaces
 Make sure I sanitize input
 Form validation also.
 Add units tests, look into nancy browser
+Add confirmation for both: update and delete
 check out: https://github.com/MoonStorm/Dapper.FastCRUD
 
 #Dependencies/ Libraries
 Special note about PUT/DELETE requests: y default IIS 6 does not support PUT and DELETE verbs.
 refer to: https://github.com/NancyFx/Nancy/wiki/Hosting-Nancy-with-asp.net
 
-##Usesul link :
+##Useful link :
  https://github.com/jmk22/todo_categories_databases_CRUD/blob/master/Modules/HomeModule.cs
 Great for modules, list many possible scenarios
 *******
@@ -25,7 +26,7 @@ Read Write Login
 
 
 Hide menu and read, show only login page, upon login
-revel all 3 menus, in addition show a logout text somewhere.
+reveal all 3 menus, in addition show a logout text somewhere.
 
 Replace login text with logout
 

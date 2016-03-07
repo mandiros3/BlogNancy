@@ -11,10 +11,16 @@
 {
     <h3>@item.Title</h3>
     <p>@item.Content</p>
-    <a href="/edit/@item.ID">Edit</a>
+    <a id="editPost" href="/edit/@item.ID">Edit</a>
    
-    <a href="/delete/@item.ID">Delete</a>
+    <a id="deletePost" href="/delete/@item.ID">Delete</a>
 }
 
 
+<script type="text/javascript">
 
+    $("#editPost").click();
+
+
+
+</script>
