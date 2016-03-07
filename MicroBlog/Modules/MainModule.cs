@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using MicroBlog.Models;
 using Nancy;
@@ -21,35 +22,35 @@ namespace MicroBlog.Modules
         public MainModule()
         {
             //Instantiate a new class that handles the database, implements the methods in the interface
-          // Routes simply return a view associated with the request
-          // Simple Login, view, write. 
-          // Everything else is simple and self explanatory to understand.
+            // Routes simply return a view associated with the request
+            // Simple Login, view, write. 
+            // Everything else is simple and self explanatory to understand.
 
 
-          //Todo Maybe put all routes into their own file/model if it gets big enough
+            //Todo Maybe put all routes into their own file/model if it gets big enough
+            //TODO insert success or failure message
 
-          //The requests will call these methods
-          Get["/"] = Home;
+            //The requests will call these methods
+            Get["/"] = Home;
             Get["/write"] = Write_GET;
             Post["/write"] = Write_POST;
             Get["/login"] = Login;
 
-            //I better make it async so the web app can continue while it's being updated in the background
-            //TODO insert success or failure message
-            Put["/edit/{id:int}"] = parameters =>
+            //Todo Refactor this into a separate function just like the others.
+            //Trying come content negotiation
+            Put["/edit/{id:int}", true] = async (parameters, ctx) =>
             {
-                return HttpStatusCode.NotImplemented;
-            };
+                var updatedPost = this.Bind<Post>();
+                var item = await _post.Update(updatedPost);
 
-            //Note: This line made me include Microsoft.CSharp as a reference.
-            Delete["/delete/{id:int}"] = param =>
-            {
-                int result = param.id;
-                _post.Delete(result);
-                return Response.AsRedirect("/");
+
+                return Negotiate.WithModel(item).WithView("Views/Pages/Home");
+
 
             };
-
+      //Note: This line made me include Microsoft.CSharp as a reference.
+            Delete["/delete/{id:int}"] = Remove;
+            
         }
 
         //Actions Methods here: So the contructor doesn't get bloated.
@@ -60,13 +61,13 @@ namespace MicroBlog.Modules
                 return View["Views/Pages/Home.cshtml", postList];
         }
 
-        private dynamic Write_GET(dynamic o)
+        private dynamic Write_GET(dynamic parameters)
         {
             var post = new Post();
                 return View["Views/Pages/Write", post];
         }
 
-        public dynamic Write_POST(dynamic o)
+        public  dynamic  Write_POST(dynamic parameters)
         {
             //Binds model to view
             var post = this.Bind<Post>();
@@ -74,7 +75,16 @@ namespace MicroBlog.Modules
             return Response.AsRedirect("/");
         }
 
-        private dynamic Login(dynamic o)
+       
+
+        public dynamic Remove(dynamic parameters)
+        {
+            int _id = parameters.id;
+            _post.Delete(_id);
+            return Response.AsRedirect("/");
+        }
+
+        private dynamic Login(dynamic parameters)
         {
             return View["Views/Pages/Login"];
         }

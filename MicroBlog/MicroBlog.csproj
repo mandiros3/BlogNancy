@@ -102,8 +102,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\bootstrap.min.css" />
-    <Content Include="Assets\bootstrap.min.js" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.min.js" />
     <None Include="conventions.md" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">

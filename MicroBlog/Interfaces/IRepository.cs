@@ -13,7 +13,7 @@ namespace MicroBlog.Interfaces
 
         Post Create(Post post);
 
-        //Task<Post> Update(Post post);
+        Task<Post> Update(Post post);
 
        bool Delete(int id);
     }
