@@ -4,6 +4,7 @@ Pay Attention to interfaces
 + Explore alternatives to razor: angular, vue, riot, ember, react.
 + Separate the UI from the service. Make it a true API, or do content
 negotiation
++ Remember to enable http verbs put and delete in IIS : http://stevemichelotti.com/resolve-404-in-iis-express-for-put-and-delete-verbs/
 
 
 

@@ -33,19 +33,19 @@ namespace MicroBlog.Modules
 
           //Requests will call these methods
           Get["/"] = Home;
-            Get["/write"] = Write_GET;
-            Post["/write"] = Write_POST;
+            Get["post/write"] = Write_GET;
+            Post["post/write"] = Write_POST;
             Get["/login"] = Login;
 
             //I better make it async so the web app can continue while it's being updated in the background
             //TODO insert success or failure message
-            Put["/edit/{id:int}"] = parameters =>
+            Put["post/edit/{id:int}"] = parameters =>
             {
                 return HttpStatusCode.NotImplemented;
             };
 
             //Note: This line made me include Microsoft.CSharp as a reference.
-            Delete["/{id:int}"] = param =>
+            Delete["post/delete/{id:int}"] = param =>
             {
                 int id = param.id;
                 var result = _post.Delete(id);
