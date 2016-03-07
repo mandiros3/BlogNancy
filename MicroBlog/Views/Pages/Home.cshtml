@@ -1,25 +1,26 @@
 ﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<System.Collections.Generic.IList<MicroBlog.Models.Post>>
-
-
     
 @{
 
     Layout = "Views/Layouts/Master.cshtml";
     ViewBag.Title = "Home";
-
-
 }
 
-<h2>Posts</h2>
+<h2>Post</h2>
 @foreach (var item in  Model)
 {
     <h3>@item.Title</h3>
     <p>@item.Content</p>
-    <a href="/edit/@item.ID">Edit</a>
-        <a href="/@item.ID">Delete</a>
+    <a id="editPost" href="/edit/@item.ID">Edit</a>
    
-    
+    <a id="deletePost" href="/delete/@item.ID">Delete</a>
 }
 
 
+<script type="text/javascript">
 
+    $("#editPost").click();
+
+
+
+</script>
