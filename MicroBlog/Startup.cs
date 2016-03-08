@@ -11,7 +11,6 @@ namespace MicroBlog
         {
            //get { return Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + "microblog.sqlite"; }
             get { return @"C:\db\microblog.sqlite"; }
-
             private set { }
         }
 

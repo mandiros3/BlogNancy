@@ -12,14 +12,15 @@ namespace MicroBlog.DataProviders
     // this class implements the members listed in the interface
     public class DataBaseRepository : IRepository
     {
-       
-       
-        private  string Connectionstring = "Data Source=" + Startup.dbSource + ";Version=3;New=True;";
+
+
+        private string Connectionstring = "Data Source=" + Startup.dbSource + ";Version=3;New=True;";
         private string TableName = "Posts";
 
         // Todo use SQL lite for now
-       
-        public DataBaseRepository() {
+
+        public DataBaseRepository()
+        {
 
             //Create a database if it doesn't exist, create a table with these columns
             //==== So that it automatically happens whenever this class is instantiated.
@@ -49,7 +50,7 @@ namespace MicroBlog.DataProviders
         }
 
 
-        
+
         /// <summary>
         /// Gets all the posts from the database
         /// </summary>
@@ -58,7 +59,8 @@ namespace MicroBlog.DataProviders
         {
             List<Post> allPosts = new List<Post>();
 
-            try {
+            try
+            {
                 using (var conn = new SQLiteConnection(Connectionstring))
                 {
                     conn.Open();
@@ -90,7 +92,7 @@ namespace MicroBlog.DataProviders
             }
             catch (SQLiteException e)
             {
-              
+
             }
             return allPosts;
         }
@@ -106,10 +108,10 @@ namespace MicroBlog.DataProviders
             try
             {
 
-            
-            using (var conn = new SQLiteConnection(Connectionstring))
-            {
-                conn.Open();
+
+                using (var conn = new SQLiteConnection(Connectionstring))
+                {
+                    conn.Open();
 
                     //string query = $"select {id} from Posts";
                     string query = $"select * from {TableName} where Id = {id}";
@@ -130,8 +132,8 @@ namespace MicroBlog.DataProviders
                         }
                     }
 
-                    conn.Close();     
-            }
+                    conn.Close();
+                }
             }
             catch (SQLiteException e)
             {
@@ -147,7 +149,7 @@ namespace MicroBlog.DataProviders
         /// <returns></returns>
         public Post Create(Post post)
         {
-            
+
 
             if (post == null)
             {
@@ -161,7 +163,7 @@ namespace MicroBlog.DataProviders
                 using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.ExecuteNonQuery();
-                }  
+                }
                 conn.Close();
             }
 
@@ -182,7 +184,7 @@ namespace MicroBlog.DataProviders
                 string query = $"UPDATE {TableName} SET Title = '{post.Title}', Content = '{post.Content}' WHERE Id = {post.ID}";
                 using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                 {
-                   await cmd.ExecuteNonQueryAsync();
+                    await cmd.ExecuteNonQueryAsync();
                     result = true;
                 }
 
@@ -193,15 +195,15 @@ namespace MicroBlog.DataProviders
         }
 
         public bool Delete(int id)
-          {
-              bool result = false;
+        {
+            bool result = false;
 
-              if (id > 0)
-              {
+            if (id > 0)
+            {
 
-                  using (var conn = new SQLiteConnection(Connectionstring))
-                  {
-                      conn.Open();
+                using (var conn = new SQLiteConnection(Connectionstring))
+                {
+                    conn.Open();
 
                     string query = $"DELETE FROM {TableName} WHERE id = {id}";
                     using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
@@ -209,14 +211,14 @@ namespace MicroBlog.DataProviders
                         cmd.ExecuteNonQuery();
                     }
 
-           
-                      result = true;
-                      conn.Close();
-                  }
-              }
 
-              return result;
-          }
+                    result = true;
+                    conn.Close();
+                }
+            }
+
+            return result;
+        }
 
     }
 
