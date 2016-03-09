@@ -1,11 +1,10 @@
-﻿using System;
-using MicroBlog.Interfaces;
+﻿using MicroBlog.Interfaces;
 using MicroBlog.Models;
+using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using MicroBlog;
 
 namespace MicroBlog.DataProviders
 {
@@ -169,7 +168,11 @@ namespace MicroBlog.DataProviders
 
             return post.ID > 0 ? post : null;
         }
-
+        /// <summary>
+        /// Edit an existing entry
+        /// </summary>
+        /// <param name="post"></param>
+        /// <returns>a post object</returns>
         public async Task<Post> Update(Post post)
         {
             if (post == null)
@@ -194,6 +197,11 @@ namespace MicroBlog.DataProviders
             return result ? post : null;
         }
 
+        /// <summary>
+        /// Remove an entry
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>true or false</returns>
         public bool Delete(int id)
         {
             bool result = false;

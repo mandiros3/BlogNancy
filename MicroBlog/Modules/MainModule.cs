@@ -34,7 +34,9 @@ namespace MicroBlog.Modules
             Get["/"] = Home;
             Get["/write"] = Write_GET;
             Post["/write"] = Write_POST;
+            //Todo Have a separate Module for admin actions
             Get["/login"] = Login;
+           
 
             //Todo Refactor this into a separate function just like the others.
             //Trying come up with content negotiation

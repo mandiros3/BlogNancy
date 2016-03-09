@@ -107,6 +107,7 @@
     <None Include="conventions.md" />
     <Content Include="Content\jquery-1.12.1.min.js" />
     <Content Include="packages.config" />
+    <Content Include="scratch.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

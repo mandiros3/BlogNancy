@@ -1,10 +1,11 @@
 ﻿#Technical Ideas
-Pay Attention to interfaces
-Make sure I sanitize input
-Form validation also.
-Add units tests, look into nancy browser
-Add confirmation for both: update and delete
-check out: https://github.com/MoonStorm/Dapper.FastCRUD
++ Pay Attention to interfaces
++ Make sure I sanitize input
++ Form validation also.
++ Add units tests, look into nancy browser
++ Add confirmation for both: update and delete
++ check out: https://github.com/MoonStorm/Dapper.FastCRUD
++ Maybe show top 10 posts and and show all button
 
 #Dependencies/ Libraries
 Special note about PUT/DELETE requests: y default IIS 6 does not support PUT and DELETE verbs.
