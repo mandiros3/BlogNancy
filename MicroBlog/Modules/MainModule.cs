@@ -31,25 +31,28 @@ namespace MicroBlog.Modules
             //TODO insert success or failure message
 
             //The requests will call these methods
+            //Homepage will shows first 3, but a /posts will show everything
             Get["/"] = Home;
-            Get["/write"] = Write_GET;
-            Post["/write"] = Write_POST;
+            Get["/posts/new"] = newPost_GET;
+            Post["/posts/new"] = newPost_POST;
+            Get["/posts/{id:int}"] = getAPost;
+            
             //Todo Have a separate Module for admin actions
-            Get["/login"] = Login;
-           
+            Get["/user/login"] = Login;
+            //Note: This line made me include Microsoft.CSharp as a reference.
+            Delete["/posts/{id:int}"] = Remove;
 
             //Todo Refactor this into a separate function just like the others.
             //Trying come up with content negotiation
-            Put["/posts/{id:int}", true] = async (parameters, ctx) =>
+            //Using POst for partial updates
+            Post["/posts/{id:int}", true] = async (parameters, ctx) =>
             {
+                //this.needs authentication
                 var updatedPost = this.Bind<Post>();
                 var item = await _post.Update(updatedPost);
-
-
                 return Negotiate.WithModel(item).WithView("Views/Pages/Home");
             };
-            //Note: This line made me include Microsoft.CSharp as a reference.
-            Delete["/posts/{id:int}"] = Remove;
+          
 
         }
 
@@ -60,14 +63,19 @@ namespace MicroBlog.Modules
             List<Post> postList = _post.GetAll();
             return View["Views/Pages/Home.cshtml", postList];
         }
+        private dynamic getAPost(dynamic o)
+        {
+            Post item = _post.Get(o.id);
+            return item != null ? Response.AsJson(item) : HttpStatusCode.NotFound;
+        }
 
-        private dynamic Write_GET(dynamic parameters)
+        private dynamic newPost_GET(dynamic parameters)
         {
             var post = new Post();
             return View["Views/Pages/Write", post];
         }
 
-        public dynamic Write_POST(dynamic parameters)
+        public dynamic newPost_POST(dynamic parameters)
         {
             //Binds model to view
             var post = this.Bind<Post>();
@@ -78,8 +86,16 @@ namespace MicroBlog.Modules
         public dynamic Remove(dynamic parameters)
         {
             int _id = parameters.id;
-            _post.Delete(_id);
-            return Response.AsRedirect("/");
+            var result = _post.Delete(_id);
+            if (result == true) {
+                return HttpStatusCode.OK;
+            }
+            else
+            {
+                return HttpStatusCode.NotFound;
+            }
+          
+
         }
 
         private dynamic Login(dynamic parameters)

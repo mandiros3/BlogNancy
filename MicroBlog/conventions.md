@@ -12,7 +12,8 @@ Special note about PUT/DELETE requests: y default IIS 6 does not support PUT and
 refer to: https://github.com/NancyFx/Nancy/wiki/Hosting-Nancy-with-asp.net
 
 ##Useful link :
-
++ Got inspired by: https://github.com/leegould/MicroBlog (main difference is mine doesn't use an ORM because I wanted to learn)
++ ASP.NET Version http://www.asp.net/web-api/overview/older-versions/creating-a-web-api-that-supports-crud-operations
 + Explore alternatives to razor: angular, vue, riot, ember, react.
 + Separate the UI from the service. Make it a true API, or do content
 negotiation

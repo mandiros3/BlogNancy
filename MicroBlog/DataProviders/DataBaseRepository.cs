@@ -125,7 +125,7 @@ namespace MicroBlog.DataProviders
                                 post.ID = Convert.ToInt32(reader["Id"]);
                                 post.Date = reader["Date"].ToString();
                                 post.Title = reader["Title"].ToString();
-                                post.Content = reader["Id"].ToString();
+                                post.Content = reader["Content"].ToString();
 
                             }
                         }
@@ -212,6 +212,37 @@ namespace MicroBlog.DataProviders
                 using (var conn = new SQLiteConnection(Connectionstring))
                 {
                     conn.Open();
+
+                    //Todo: If item doesn't exist, return error. Use Post Get(id). 
+                    // Won't be a problem in the browser, but as an API, it's better to give too feedback.
+                    //CODE EXAMPLE BELOW
+                    /**
+                    code example: 
+                     public bool Delete(int id)
+        {
+            bool result = false;
+
+            if (id > 0)
+            {
+
+                using (var conn = new SQLiteConnection(Connectionstring))
+                {
+                    conn.Open();
+
+                    var item = conn.Get<Post>(id);
+
+                    if (item != null)
+                    {
+                        result = conn.Delete(item);
+                    }
+
+                    conn.Close();
+                }
+            }
+
+            return result;
+        } 
+                    */
 
                     string query = $"DELETE FROM {TableName} WHERE id = {id}";
                     using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
