@@ -20,8 +20,11 @@
 <script type="text/javascript">
     //Ajax calls for PUT and DELETE methods.
 
-    $((){
-
+    $(document).ready(function () {
+        $("#deletePost").click(function () {
+            popup('/map/', 300, 300, 'map');
+            return false;
+        });
     });
    
 
