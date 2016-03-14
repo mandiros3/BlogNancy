@@ -8,7 +8,11 @@ namespace MicroBlog.Interfaces
     public interface IRepository
     {
         List<Post> GetAll();
-
+        /// <summary>
+        /// Get a post from an ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A post of id n </returns>
         Post Get(int id);
 
         Post Create(Post post);

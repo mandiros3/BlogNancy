@@ -11,8 +11,10 @@
 {
     <h3>@item.Title</h3>
     <p>@item.Content</p>
-    
-    <button type="button" class="editPost" id="@item.ID">Edit Post</button>
+
+    <form action="/posts/@item.ID" method="get" style="display:inline;">
+        <button type="submit"  class="editPost" id="@item.ID">Edit Post</button>
+    </form>
     <button type="button" class="deletePost" id="@item.ID">Delete Post</button>
 }
 
