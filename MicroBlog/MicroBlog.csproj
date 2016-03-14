@@ -130,6 +130,7 @@
     <Content Include="Content\bootstrap.min.js" />
     <None Include="conventions.md" />
     <Content Include="Content\jquery-1.12.1.min.js" />
+    <Content Include="Content\main.css" />
     <Content Include="packages.config" />
     <Content Include="scratch.md" />
     <Content Include="Views\Pages\Edit.cshtml" />
