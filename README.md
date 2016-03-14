@@ -3,7 +3,7 @@ A microblog API using Nancy.
 
 Perform simple CRUD operations on a database of your choice, using the nancy microframework.
 
-##Instruction
+##Instructions
 + Clone
 + Open solution file with Visual Studio
 + Restore Nuget Packages
