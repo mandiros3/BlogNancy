@@ -87,8 +87,9 @@ namespace MicroBlog.Modules
         {
             int _id = parameters.id;
             var result = _post.Delete(_id);
-            if (result == true) {
-                return HttpStatusCode.OK;
+            if (result == true)
+            {
+                return Response.AsRedirect("/");
             }
             else
             {

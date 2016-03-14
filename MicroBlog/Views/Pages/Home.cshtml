@@ -11,23 +11,35 @@
 {
     <h3>@item.Title</h3>
     <p>@item.Content</p>
-    <a id="editPost" href="/posts/@item.ID">Edit</a>
-    <a id="deletePost" href="/posts/@item.ID">Delete</a>
     
+    <button type="button" class="editPost" id="@item.ID">Edit Post</button>
+    <button type="button" class="deletePost" id="@item.ID">Delete Post</button>
 }
 
 
 <script type="text/javascript">
     //Ajax calls for PUT and DELETE methods.
+    //posts/itemid
+    $(function() {
 
-    $(document).ready(function () {
-        $("#deletePost").click(function () {
-            popup('/map/', 300, 300, 'map');
-            return false;
+    $('.editPost').click(editPost);
+    $('.deletePost').click(deletePost);
+
+    function editPost() {
+        console.log("editlog");
+       
+    }
+
+    function deletePost() {
+        var data = this.id;
+        console.log("editlog- id" + data);
+        $.ajax({
+            url: "/posts/" + data,
+            type: 'delete'
         });
+    }
+
+
     });
-   
-
-
-
+  
 </script>
