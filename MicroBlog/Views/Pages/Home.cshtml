@@ -35,7 +35,10 @@
         console.log("editlog- id" + data);
         $.ajax({
             url: "/posts/" + data,
-            type: 'delete'
+            type: 'delete',
+            success: function() {
+                window.location.reload();
+            }
         });
     }
 
