@@ -20,7 +20,7 @@ namespace MicroBlog.Modules
         IRepository _post = new DataBaseRepository();
 
         public MainModule()
-        {
+        {  //Alpha version: 1. 
             //Instantiate a new class that handles the database, implements the methods in the interface
             // Routes simply return a view associated with the request
             // Simple Login, view, write. 
