@@ -64,7 +64,7 @@ namespace MicroBlog.DataProviders
                 {
                     conn.Open();
 
-                    string query = $"select * from {TableName} order by date desc";
+                    string query = $"SELECT * FROM {TableName} ORDER BY Date DESC";
 
                     // Read to the rows in the table, assign to class variables. Add to list of objects.
                     using (SQLiteCommand cmd = new SQLiteCommand(query, conn))

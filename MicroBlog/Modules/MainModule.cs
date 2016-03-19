@@ -20,14 +20,12 @@ namespace MicroBlog.Modules
         IRepository _post = new DataBaseRepository();
 
         public MainModule()
-        {
+        {  //Alpha version: 1. 
             //Instantiate a new class that handles the database, implements the methods in the interface
             // Routes simply return a view associated with the request
             // Simple Login, view, write. 
-            // Everything else is simple and self explanatory to understand.
+            // Everything else is simple and self explanatory.
 
-
-            //Todo Maybe put all routes into their own file/model if it gets big enough
             //TODO insert success or failure message
 
             //The requests will call these methods
@@ -47,10 +45,11 @@ namespace MicroBlog.Modules
             //Using POst for partial updates
             Post["/posts/{id:int}", true] = async (parameters, ctx) =>
             {
+                
                 //this.needs authentication
                 var updatedPost = this.Bind<Post>();
                 var item = await _post.Update(updatedPost);
-                return Negotiate.WithModel(item).WithView("Views/Pages/Home");
+                return Response.AsRedirect("/");
             };
           
 
@@ -58,15 +57,22 @@ namespace MicroBlog.Modules
 
         //Actions Methods here: So the contructor doesn't get bloated.
         //Nancy will look for a razor file with  a file name that matches the class name of the viewmodel.
-        private dynamic Home(dynamic o)
+        private dynamic Home(dynamic parameters)
         {
             List<Post> postList = _post.GetAll();
             return View["Views/Pages/Home.cshtml", postList];
         }
-        private dynamic getAPost(dynamic o)
+        private dynamic getAPost(dynamic parameters)
         {
-            Post item = _post.Get(o.id);
-            return item != null ? Response.AsJson(item) : HttpStatusCode.NotFound;
+            Post item = _post.Get(parameters.id);
+            if(item != null)
+            {
+              return View["Views/Pages/Edit.cshtml", item];
+            }
+            else
+            {
+                return HttpStatusCode.NotFound;
+            }
         }
 
         private dynamic newPost_GET(dynamic parameters)

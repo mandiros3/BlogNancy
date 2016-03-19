@@ -6,14 +6,17 @@
     ViewBag.Title = "Home";
 }
 
-<h2>Post</h2>
-@foreach (var item in  Model)
-{
-    <h3>@item.Title</h3>
-    <p>@item.Content</p>
-    
-    <button type="button" class="editPost" id="@item.ID">Edit Post</button>
-    <button type="button" class="deletePost" id="@item.ID">Delete Post</button>
+<h1>Posts</h1>
+@foreach (var item in Model)
+{    <section class="well">
+        <h3>@item.Title</h3>
+        <p>@item.Content</p>
+
+        <form action="/posts/@item.ID" method="get" style="display:inline;">
+            <button type="submit" class="editPost btn btn-default" id="@item.ID">Edit</button>
+        </form>
+        <button type="button" class="deletePost btn btn-danger" id="@item.ID">Delete</button>
+    </section>
 }
 
 

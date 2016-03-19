@@ -1,0 +1,23 @@
+﻿
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MicroBlog.Models.Post>
+@{
+    Layout = "Views/Layouts/Master.cshtml";
+    ViewBag.Title = "Edit";
+}
+
+<h1>Edit</h1>
+
+
+<form class="form-vertical" method="POST" action="/posts/@Model.ID">
+    <section class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" name="title" value="@Model.Title" />
+    </section>
+    <section class="form-group">
+        <label for="content">Text</label>
+        <textarea class="form-control post" rows="15" name=" content" value="@Model.Content">@Model.Content</textarea>
+    </section>
+    <button type="submit" class="btn btn-default"  >Save</button>
+    <button class="btn btn-danger" type="submit" formaction="/" formmethod="get">Cancel</button>
+
+</form>
