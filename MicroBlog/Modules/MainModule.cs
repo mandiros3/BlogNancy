@@ -48,7 +48,7 @@ namespace MicroBlog.Modules
                 
                 //this.needs authentication
                 var updatedPost = this.Bind<Post>();
-                var item = await _post.Update(updatedPost);
+                await _post.Update(updatedPost);
                 return Response.AsRedirect("/");
             };
           

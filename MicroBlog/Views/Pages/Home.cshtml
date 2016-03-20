@@ -7,7 +7,11 @@
 }
 
 <h1>Posts</h1>
-@foreach (var item in Model)
+
+@if (Model != null)
+{
+   
+foreach (var item in Model)
 {    <section class="well">
         <h3>@item.Title</h3>
         <p>@item.Content</p>
@@ -16,6 +20,14 @@
             <button type="submit" class="editPost btn btn-default" id="@item.ID">Edit</button>
         </form>
         <button type="button" class="deletePost btn btn-danger" id="@item.ID">Delete</button>
+    </section>
+    }
+}
+else
+{
+    <section class="well">
+        <h3>You have nothing here. Please write a new post</h3>
+        <a href="/posts/new"></a>
     </section>
 }
 
