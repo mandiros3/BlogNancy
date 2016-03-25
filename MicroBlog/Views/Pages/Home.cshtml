@@ -8,11 +8,17 @@
 
 <h1>Posts</h1>
 
-@if (Model != null)
+@if (Model.Count == 0)
 {
-   
-foreach (var item in Model)
-{    <section class="well">
+    <section class="well">
+        <h3>You have nothing here! Please write a new post</h3>
+        <a href="/posts/new"> New Post</a>
+    </section>
+}
+else
+{
+    foreach (var item in Model)
+    {    <section class="well">
         <h3>@item.Title</h3>
         <p>@item.Content</p>
 
@@ -22,13 +28,6 @@ foreach (var item in Model)
         <button type="button" class="deletePost btn btn-danger" id="@item.ID">Delete</button>
     </section>
     }
-}
-else
-{
-    <section class="well">
-        <h3>You have nothing here. Please write a new post</h3>
-        <a href="/posts/new"></a>
-    </section>
 }
 
 

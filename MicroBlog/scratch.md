@@ -1,5 +1,5 @@
 ﻿#Problem
-Problem I’m facing: Use same form for both edit and create
+Problem I’m facing: Use same form for both edit and create [solved]
 
 If post !exist
 	Show empty form
