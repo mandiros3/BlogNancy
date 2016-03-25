@@ -158,13 +158,23 @@ namespace MicroBlog.DataProviders
             using (var conn = new SQLiteConnection(Connectionstring))
             {
                 conn.Open();
-                string query = $"insert into {TableName} (Title, Content) values ('{post.Title}', '{post.Content}')";
-                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                try
                 {
-                    cmd.ExecuteNonQuery();
+                    string query = $"INSERT INTO {TableName} (Title, Content) VALUES ('{post.Title}', '{post.Content}')";
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    conn.Close();
                 }
-                conn.Close();
+                catch
+                {
+                    Console.WriteLine("Could not insert.");
+                }
             }
+                
+
+   
 
             return post.ID > 0 ? post : null;
         }
