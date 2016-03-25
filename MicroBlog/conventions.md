@@ -6,7 +6,7 @@
 + Add confirmation for both: update and delete
 + check out: https://github.com/MoonStorm/Dapper.FastCRUD
 + Maybe show top 10 posts and and show all button
-+ Prevent view deletion if not connectivity to network. Update view, only if there was
++ Prevent view deletion if no connectivity to network. Update view, only if there was
 a response
 
 #Dependencies/ Libraries

@@ -16,15 +16,15 @@ namespace MicroBlog.Modules
 
         public MainModule()
         {  //Alpha version: 1. 
-            //Todo Have a separate Module for admin actions
+   
             Get["/"] = Home;
             Get["/posts/new"] = newPost_GET;
             Post["/posts/new"] = newPost_POST;
             Get["/posts/{id:int}"] = getAPost;
-            Get["/user/login"] = Login;
+           
             Delete["/posts/{id:int}"] = Remove;
             Post["/posts/{id:int}", true] = async (parameters, ctx) =>
-            {
+            {  
                 //this.needs authentication
                 var updatedPost = this.Bind<Post>();
                 await _post.Update(updatedPost);
@@ -81,10 +81,7 @@ namespace MicroBlog.Modules
 
         }
 
-        private dynamic Login(dynamic parameters)
-        {
-            return View["Views/Pages/Login"];
-        }
+       
 
     }
 }
