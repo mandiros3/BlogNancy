@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBlog", "MicroBlog\MicroBlog.csproj", "{6EBD84D0-A391-4C54-9E78-38FE1C5B4243}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBlog.Test", "MicroBlog.Test\MicroBlog.Test.csproj", "{E47EC50F-4EA4-43F5-956A-05D3D6085019}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6EBD84D0-A391-4C54-9E78-38FE1C5B4243}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EBD84D0-A391-4C54-9E78-38FE1C5B4243}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EBD84D0-A391-4C54-9E78-38FE1C5B4243}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E47EC50F-4EA4-43F5-956A-05D3D6085019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E47EC50F-4EA4-43F5-956A-05D3D6085019}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E47EC50F-4EA4-43F5-956A-05D3D6085019}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E47EC50F-4EA4-43F5-956A-05D3D6085019}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
