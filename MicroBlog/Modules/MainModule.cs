@@ -61,6 +61,7 @@ namespace MicroBlog.Modules
         {
             //Binds model to view
             var post = this.Bind<Post>();
+            
             _post.Create(post);
             return Response.AsRedirect("/");
         }
