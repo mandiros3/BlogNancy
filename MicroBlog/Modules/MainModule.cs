@@ -61,9 +61,17 @@ namespace MicroBlog.Modules
         {
             //Binds model to view
             var post = this.Bind<Post>();
-            
-            _post.Create(post);
-            return Response.AsRedirect("/");
+            if (post.Title.Length == 0 && post.Content.Length == 0)
+            {
+                return HttpStatusCode.BadRequest;
+            }
+
+            else
+            {
+                _post.Create(post);
+                return Response.AsRedirect("/");
+            }
+           
         }
 
         public dynamic Remove(dynamic parameters)
