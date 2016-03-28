@@ -16,12 +16,11 @@ namespace MicroBlog.Modules
 
         public MainModule()
         {  //Alpha version: 1. 
-   
+              // add a basepath to avoid repetion, but make index do something else, separate module   
             Get["/"] = Home;
             Get["/posts/new"] = newPost_GET;
             Post["/posts/new"] = newPost_POST;
             Get["/posts/{id:int}"] = getAPost;
-           
             Delete["/posts/{id:int}"] = Remove;
             Post["/posts/{id:int}", true] = async (parameters, ctx) =>
             {  
@@ -35,20 +34,18 @@ namespace MicroBlog.Modules
         //Action Methods definitions (Called from the contructor)
         private dynamic Home(dynamic parameters)
         {
-            List<Post> postList = _post.GetAll();
+            var postList = _post.GetAll();
             return View["Views/Pages/Home.cshtml", postList];
         }
+
         private dynamic getAPost(dynamic parameters)
         {
             Post item = _post.Get(parameters.id);
-            if(item != null)
-            {
-              return View["Views/Pages/Edit.cshtml", item];
-            }
-            else
+            if(item == null)
             {
                 return HttpStatusCode.NotFound;
             }
+            return View["Views/Pages/Edit.cshtml", item];    
         }
 
         private dynamic newPost_GET(dynamic parameters)
@@ -61,33 +58,19 @@ namespace MicroBlog.Modules
         {
             //Binds model to view
             var post = this.Bind<Post>();
-            if (post.Title.Length == 0 && post.Content.Length == 0)
+            if (string.IsNullOrEmpty(post.Title) || string.IsNullOrEmpty(post.Content))
             {
                 return HttpStatusCode.BadRequest;
             }
-
-            else
-            {
                 _post.Create(post);
-                return Response.AsRedirect("/");
-            }
-           
+                return Response.AsRedirect("/");         
         }
 
         public dynamic Remove(dynamic parameters)
         {
             int _id = parameters.id;
             var result = _post.Delete(_id);
-            if (result == true)
-            {
-                return Response.AsRedirect("/");
-            }
-            else
-            {
-                return HttpStatusCode.NotFound;
-            }
-          
-
+            return result == false ? HttpStatusCode.NotFound : Response.AsRedirect("/");
         }
 
        

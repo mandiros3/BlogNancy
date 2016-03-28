@@ -1,8 +1,6 @@
 ﻿#Technical Ideas
-+ Pay Attention to interfaces
-+ Make sure I sanitize input
-+ Form validation also.
-+ Add units tests, look into nancy browser
++ Make sure I sanitize input 
++ Form validation also (use routing constrainst)
 + Add confirmation for both: update and delete
 + check out: https://github.com/MoonStorm/Dapper.FastCRUD
 + Maybe show top 10 posts and and show all button
@@ -45,13 +43,12 @@ Great for modules, list many possible scenarios
   
 Read Write Login
 
-
 Hide menu and read, show only login page, upon login
 reveal all 3 menus, in addition show a logout text somewhere.
 
 Replace login text with logout
 
-```java 
+```c#
  if(Login == true)
  {
     Menu[2].text("logout");

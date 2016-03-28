@@ -26,30 +26,24 @@ namespace MicroBlog.Test
         }
 
         [Test]
-
         public void index_test()
         {
             {
-                var result = _browser.Get("/", with =>
-                {
+                var result = _browser.Get("/", with => with.HttpRequest());
 
-                    with.HttpRequest();
-                });
                 Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
             }
         }
 
-
-
         [Test]
-        public void should_fail_if_Empy_Input()
+        public void should_return_400_when_empty_input()
         {
             var result = _browser.Post("/posts/new", with =>
             {
-
                 with.HttpRequest();
-                with.FormValue("title", "");
-                with.FormValue("content", "");
+                with.Header("content-type", "text/html");
+                with.Query("title", null);
+                with.Query("content", null);
             });
             Assert.AreEqual(HttpStatusCode.BadRequest, result.StatusCode);
         }
