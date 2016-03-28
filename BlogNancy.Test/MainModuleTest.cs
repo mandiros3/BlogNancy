@@ -2,7 +2,7 @@
 using Nancy.Diagnostics.Modules;
 using Nancy.Testing;
 using Nancy;
-namespace MicroBlog.Test
+namespace BlogNancy.Test
 {
     [TestFixture]
     public class MainModuleTest

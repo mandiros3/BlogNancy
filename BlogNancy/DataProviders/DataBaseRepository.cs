@@ -1,12 +1,12 @@
-﻿using MicroBlog.Interfaces;
-using MicroBlog.Models;
+﻿using BlogNancy.Interfaces;
+using BlogNancy.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace MicroBlog.DataProviders
+namespace BlogNancy.DataProviders
 {
     // this class implements the members listed in the interface
     public class DataBaseRepository : IRepository

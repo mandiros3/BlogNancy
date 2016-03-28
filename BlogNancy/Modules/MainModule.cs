@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using MicroBlog.Models;
+using BlogNancy.Models;
 using Nancy;
 using Nancy.ModelBinding;
-using MicroBlog.Interfaces;
-using MicroBlog.DataProviders;
+using BlogNancy.Interfaces;
+using BlogNancy.DataProviders;
 
 
-namespace MicroBlog.Modules
+namespace BlogNancy.Modules
 {
     public class MainModule : NancyModule
     {

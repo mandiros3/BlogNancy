@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Nancy;
 
-namespace MicroBlog.Modules
+namespace BlogNancy.Modules
 {
     public class AdminModule : NancyModule
     {

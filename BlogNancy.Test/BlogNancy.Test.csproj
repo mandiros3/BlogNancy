@@ -65,7 +65,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MicroBlog\BlogNancy.csproj">
+    <ProjectReference Include="..\BlogNancy\BlogNancy.csproj">
       <Project>{6ebd84d0-a391-4c54-9e78-38fe1c5b4243}</Project>
       <Name>BlogNancy</Name>
     </ProjectReference>

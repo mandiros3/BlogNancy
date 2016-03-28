@@ -2,7 +2,7 @@
 using Nancy.Security;
 using System.Collections.Generic;
 
-namespace MicroBlog.Models
+namespace BlogNancy.Models
 {
     public class UserID : IUserIdentity
     {

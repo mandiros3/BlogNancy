@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogNancy", "MicroBlog\BlogNancy.csproj", "{6EBD84D0-A391-4C54-9E78-38FE1C5B4243}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogNancy", "BlogNancy\BlogNancy.csproj", "{6EBD84D0-A391-4C54-9E78-38FE1C5B4243}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogNancy.Test", "MicroBlog.Test\BlogNancy.Test.csproj", "{E47EC50F-4EA4-43F5-956A-05D3D6085019}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogNancy.Test", "BlogNancy.Test\BlogNancy.Test.csproj", "{E47EC50F-4EA4-43F5-956A-05D3D6085019}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
