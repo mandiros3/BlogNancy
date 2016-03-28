@@ -35,7 +35,8 @@ namespace BlogNancy.Modules
         private dynamic Home(dynamic parameters)
         {
             var postList = _post.GetAll();
-            return View["Views/Pages/Home.cshtml", postList];
+             return View["Views/Pages/Home.cshtml", postList];
+            //return "Hello World";
         }
 
         private dynamic getAPost(dynamic parameters)
