@@ -61,7 +61,8 @@ namespace BlogNancy.Modules
             var post = this.Bind<Post>();
             if (string.IsNullOrEmpty(post.Title) || string.IsNullOrEmpty(post.Content))
             {
-                return HttpStatusCode.BadRequest;
+                //Need to return a HTTP status code in later versions
+                return ("<h2>Cannot submit empty form</h2> <a href='/posts/new'>Go back...</a>");
             }
                 _post.Create(post);
                 return Response.AsRedirect("/");         
