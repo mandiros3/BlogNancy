@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Nancy.Diagnostics.Modules;
 using Nancy.Testing;
 using Nancy;
@@ -9,7 +10,7 @@ namespace BlogNancy.Test
     {
         public string GetRootPath()
         {
-            return @"C:\Users\Andi Milhomme.CORP2000\Documents\Visual Studio 2015\Projects\BlogNancy\BlogNancy";
+            return Environment.CurrentDirectory; ;
         }
     }
     [TestFixture]
