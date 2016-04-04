@@ -14,5 +14,5 @@ Perform simple CRUD operations on a database of your choice, using the nancy mic
 
 
 ![solarized palette](https://raw.githubusercontent.com/mandiros3/BlogNancy/master/nancyblog-early.png)
-![solarized palette](https://raw.githubusercontent.com/mandiros3/BlogNancy/master/edit.png)
+![alt text](https://raw.githubusercontent.com/mandiros3/BlogNancy/master/edit.PNG)
 
