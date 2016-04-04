@@ -8,21 +8,22 @@ using System.Threading.Tasks;
 
 namespace BlogNancy.DataProviders
 {
-    // this class implements the members listed in the interface
+
+    /// <summary>
+    /// Implements the members listed in the IRepository interface using SQLite 
+    /// </summary>
+    /// <returns> A list of type Post</returns>
     public class DataBaseRepository : IRepository
     {
-
-
         private string Connectionstring = "Data Source=" + Startup.dbSource + ";Version=3;New=True;";
         private string TableName = "Posts";
 
-        // Todo use SQL lite for now
-
+        /// <summary>
+        /// Constructor creates a database if it doesn't exist and creates the database tables
+        /// </summary>
         public DataBaseRepository()
         {
-
-            //Create a database if it doesn't exist, create a table with these columns
-            //==== So that it automatically happens whenever this class is instantiated.
+            // "using " keywords ensures the object is properly disposed.
             using (var conn = new SQLiteConnection(Connectionstring))
             {
                 try
@@ -30,11 +31,10 @@ namespace BlogNancy.DataProviders
                     if (!File.Exists(Startup.dbSource))
                     {
                         SQLiteConnection.CreateFile(Startup.dbSource);
-
                     }
 
                     conn.Open();
-                    //Creating a Table
+                    //Create a Table
                     string query = $"create table IF NOT EXISTS {TableName} (Id INTEGER PRIMARY KEY, Date VARCHAR NOT NULL DEFAULT CURRENT_DATE, Title nvarchar(255) not null, Content nvarchar(1000) Not NULL) ";
                     SQLiteCommand command = new SQLiteCommand(query, conn);
                     command.ExecuteNonQuery();
@@ -49,11 +49,10 @@ namespace BlogNancy.DataProviders
         }
 
 
-
         /// <summary>
-        /// Gets all the posts from the database
+        /// Gets all the entries from the database
         /// </summary>
-        /// <returns> A list of type Post</returns>
+        /// <returns> A list of objects of type Post</returns>
         public List<Post> GetAll()
         {
             List<Post> allPosts = new List<Post>();
@@ -66,7 +65,7 @@ namespace BlogNancy.DataProviders
 
                     string query = $"SELECT * FROM {TableName} ORDER BY Date DESC";
 
-                    // Read to the rows in the table, assign to class variables. Add to list of objects.
+                    // Read the rows in the table, 
                     using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                     {
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
@@ -80,8 +79,8 @@ namespace BlogNancy.DataProviders
                                     Title = reader["Title"].ToString(),
                                     Content = reader["Content"].ToString()
                                 };
-                                allPosts.Add(post);
 
+                                allPosts.Add(post);
                             }
                         }
                     }
@@ -91,7 +90,7 @@ namespace BlogNancy.DataProviders
             }
             catch (SQLiteException e)
             {
-
+                
             }
             return allPosts;
         }
@@ -136,7 +135,7 @@ namespace BlogNancy.DataProviders
             }
             catch (SQLiteException e)
             {
-
+               
             }
             return post;
         }
@@ -191,6 +190,10 @@ namespace BlogNancy.DataProviders
             }
 
             bool result = false;
+            try
+            {
+
+         
             using (var conn = new SQLiteConnection(Connectionstring))
             {
                 conn.Open();
@@ -203,9 +206,16 @@ namespace BlogNancy.DataProviders
 
                 conn.Close();
             }
+            }
+            catch (Exception)
+            {
+
+            }
 
             return result ? post : null;
         }
+              
+        
 
         /// <summary>
         /// Remove an entry
@@ -226,33 +236,7 @@ namespace BlogNancy.DataProviders
                     //Todo: If item doesn't exist, return error. Use Post Get(id). 
                     // Won't be a problem in the browser, but as an API, it's better to give too feedback.
                     //CODE EXAMPLE BELOW
-                    /**
-                    code example: 
-                     public bool Delete(int id)
-        {
-            bool result = false;
-
-            if (id > 0)
-            {
-
-                using (var conn = new SQLiteConnection(Connectionstring))
-                {
-                    conn.Open();
-
-                    var item = conn.Get<Post>(id);
-
-                    if (item != null)
-                    {
-                        result = conn.Delete(item);
-                    }
-
-                    conn.Close();
-                }
-            }
-
-            return result;
-        } 
-                    */
+                   
 
                     string query = $"DELETE FROM {TableName} WHERE id = {id}";
                     using (SQLiteCommand cmd = new SQLiteCommand(query, conn))

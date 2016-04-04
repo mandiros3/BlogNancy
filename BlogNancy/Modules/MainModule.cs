@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using BlogNancy.Models;
+﻿using BlogNancy.Models;
 using Nancy;
 using Nancy.ModelBinding;
 using BlogNancy.Interfaces;
 using BlogNancy.DataProviders;
-
 
 namespace BlogNancy.Modules
 {
@@ -16,14 +13,18 @@ namespace BlogNancy.Modules
 
         public MainModule()
         {  //Alpha version: 1. 
-              // add a basepath to avoid repetion, but make index do something else, separate module   
+           
+            //The main routes, each route will call a method, this will keep the constructor lean.
             Get["/"] = Home;
-            Get["/posts/new"] = newPost_GET;
-            Post["/posts/new"] = newPost_POST;
-            Get["/posts/{id:int}"] = getAPost;
-            Delete["/posts/{id:int}"] = Remove;
+            //display the form to input data
+            Get["/posts/new"] = createPostForm;
+            Post["/posts/new"] = createPost;
+            Get["/posts/{id:int}"] = getById;
+            Delete["/posts/{id:int}"] = deletePost;
+
+            //Todo: Turn this route into a function like the others.
             Post["/posts/{id:int}", true] = async (parameters, ctx) =>
-            {  
+            {
                 //this.needs authentication
                 var updatedPost = this.Bind<Post>();
                 await _post.Update(updatedPost);
@@ -32,30 +33,31 @@ namespace BlogNancy.Modules
         }
 
         //Action Methods definitions (Called from the contructor)
-        private dynamic Home(dynamic parameters)
+      
+        public dynamic Home(dynamic parameters)
         {
             var postList = _post.GetAll();
-             return View["Views/Pages/Home.cshtml", postList];
+            return View["Views/Pages/Home.cshtml", postList];
             //return "Hello World";
         }
-
-        private dynamic getAPost(dynamic parameters)
+       
+        public dynamic getById(dynamic parameters)
         {
             Post item = _post.Get(parameters.id);
-            if(item == null)
+            if (item == null)
             {
                 return HttpStatusCode.NotFound;
             }
-            return View["Views/Pages/Edit.cshtml", item];    
+            return View["Views/Pages/Edit.cshtml", item];
         }
 
-        private dynamic newPost_GET(dynamic parameters)
+        public dynamic createPostForm(dynamic parameters)
         {
             var post = new Post();
             return View["Views/Pages/Write", post];
         }
 
-        public dynamic newPost_POST(dynamic parameters)
+        public dynamic createPost(dynamic parameters)
         {
             //Binds model to view
             var post = this.Bind<Post>();
@@ -64,18 +66,16 @@ namespace BlogNancy.Modules
                 //Need to return a HTTP status code in later versions
                 return ("<h2>Cannot submit empty form</h2> <a href='/posts/new'>Go back...</a>");
             }
-                _post.Create(post);
-                return Response.AsRedirect("/");         
+            _post.Create(post);
+            return Response.AsRedirect("/");
         }
 
-        public dynamic Remove(dynamic parameters)
+        public dynamic deletePost(dynamic parameters)
         {
             int _id = parameters.id;
             var result = _post.Delete(_id);
             return result == false ? HttpStatusCode.NotFound : Response.AsRedirect("/");
         }
-
-       
-
+    
     }
 }

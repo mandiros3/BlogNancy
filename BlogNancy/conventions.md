@@ -28,15 +28,12 @@ negotiation
 + Allow to edit on login only
 + Add admin panel.
 +Show number of posts, search ext....
++Possibly extend this into a mini .net CMS
 
 ##Useful link :
  https://github.com/jmk22/todo_categories_databases_CRUD/blob/master/Modules/HomeModule.cs
 Great for modules, list many possible scenarios
 *******
-+Make it more modular, try to separate view from model more
-+Possibly extend this into a mini .net CMS
-+Add Custmomization Options
-
 
 *******
 #Menu

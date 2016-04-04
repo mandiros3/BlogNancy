@@ -127,8 +127,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\bootstrap.min.js" />
     <None Include="conventions.md" />
     <Content Include="Content\jquery-1.12.2.min.js" />
     <Content Include="Content\main.css" />
