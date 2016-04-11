@@ -39,7 +39,7 @@ namespace BlogNancy.DataProviders
                     SQLiteCommand command = new SQLiteCommand(query, conn);
                     command.ExecuteNonQuery();
                 }
-
+                //TODO: Handle try catch better cath a more specific error type. 
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.ToString());
@@ -47,7 +47,6 @@ namespace BlogNancy.DataProviders
                 conn.Close();
             }
         }
-
 
         /// <summary>
         /// Gets all the entries from the database
@@ -88,6 +87,7 @@ namespace BlogNancy.DataProviders
                     conn.Close();
                 }
             }
+            //Useless try-catch, I need to handle it meaningfully
             catch (SQLiteException e)
             {
                 
@@ -199,6 +199,8 @@ namespace BlogNancy.DataProviders
                 conn.Close();
             }
             }
+
+            //useless catch, I need to handle it properly, either log or display a meaningfull message to the UI
             catch (Exception)
             {
 
@@ -212,6 +214,8 @@ namespace BlogNancy.DataProviders
         /// </summary>
         /// <param name="id"></param>
         /// <returns>true or false</returns>
+        /// 
+        //TODO: Remember to throw if there's not internet connection, since the db connection is independent from web
         public bool Delete(int id)
         {
             bool result = false;
