@@ -10,8 +10,8 @@ namespace BlogNancy
             public static string dbSource
         {
            //get { return Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + "microblog.sqlite"; }
-            get { return @"C:\db\microblog.sqlite"; }
-            private set { }
+            //get { return @"C:\db\microblog.sqlite"; }
+        get{ return @"|DataDirectory|microblog.sqlite"; }
         }
 
         public void Configuration(IAppBuilder app)
