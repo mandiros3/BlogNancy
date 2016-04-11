@@ -105,8 +105,6 @@ namespace BlogNancy.DataProviders
             Post post = new Post();
             try
             {
-
-
                 using (var conn = new SQLiteConnection(Connectionstring))
                 {
                     conn.Open();
@@ -125,11 +123,9 @@ namespace BlogNancy.DataProviders
                                 post.Date = reader["Date"].ToString();
                                 post.Title = reader["Title"].ToString();
                                 post.Content = reader["Content"].ToString();
-
                             }
                         }
                     }
-
                     conn.Close();
                 }
             }
@@ -147,7 +143,6 @@ namespace BlogNancy.DataProviders
         /// <returns></returns>
         public Post Create(Post post)
         {
-
 
             if (post == null)
             {
@@ -171,9 +166,6 @@ namespace BlogNancy.DataProviders
                     Console.WriteLine("Could not insert.");
                 }
             }
-                
-
-   
 
             return post.ID > 0 ? post : null;
         }
@@ -190,10 +182,10 @@ namespace BlogNancy.DataProviders
             }
 
             bool result = false;
+
             try
             {
 
-         
             using (var conn = new SQLiteConnection(Connectionstring))
             {
                 conn.Open();
@@ -215,8 +207,6 @@ namespace BlogNancy.DataProviders
             return result ? post : null;
         }
               
-        
-
         /// <summary>
         /// Remove an entry
         /// </summary>
@@ -243,8 +233,6 @@ namespace BlogNancy.DataProviders
                     {
                         cmd.ExecuteNonQuery();
                     }
-
-
                     result = true;
                     conn.Close();
                 }

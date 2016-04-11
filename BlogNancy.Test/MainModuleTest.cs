@@ -10,7 +10,7 @@ namespace BlogNancy.Test
     {
         public string GetRootPath()
         {
-            return Environment.CurrentDirectory; ;
+            return Environment.CurrentDirectory;
         }
     }
     [TestFixture]
