@@ -19,7 +19,7 @@ namespace BlogNancy.DataProviders
         private string TableName = "Posts";
 
         /// <summary>
-        /// Constructor creates a database if it doesn't exist and creates the database tables
+        /// Constructor creates a database if it doesn't exist and creates the database's tables
         /// </summary>
         public DataBaseRepository()
         {
@@ -40,7 +40,7 @@ namespace BlogNancy.DataProviders
                     command.ExecuteNonQuery();
                 }
                 //TODO: Handle try catch better cath a more specific error type. 
-                catch (Exception ex)
+                catch (SQLiteException ex )
                 {
                     Console.WriteLine(ex.ToString());
                 }
@@ -88,9 +88,9 @@ namespace BlogNancy.DataProviders
                 }
             }
             //Useless try-catch, I need to handle it meaningfully
-            catch (SQLiteException e)
+            catch (SQLiteException ex)
             {
-                
+                Console.WriteLine(ex.ToString());
             }
             return allPosts;
         }
@@ -129,9 +129,9 @@ namespace BlogNancy.DataProviders
                     conn.Close();
                 }
             }
-            catch (SQLiteException e)
+            catch (SQLiteException ex)
             {
-               
+                Console.WriteLine(ex.ToString());
             }
             return post;
         }
@@ -161,9 +161,9 @@ namespace BlogNancy.DataProviders
                     }
                     conn.Close();
                 }
-                catch
+                catch (SQLiteException ex)
                 {
-                    Console.WriteLine("Could not insert.");
+                    Console.WriteLine(ex.ToString());
                 }
             }
 
@@ -201,9 +201,9 @@ namespace BlogNancy.DataProviders
             }
 
             //useless catch, I need to handle it properly, either log or display a meaningfull message to the UI
-            catch (Exception)
+            catch (SQLiteException ex)
             {
-
+                Console.WriteLine(ex.ToString());
             }
 
             return result ? post : null;
@@ -222,23 +222,33 @@ namespace BlogNancy.DataProviders
 
             if (id > 0)
             {
-
-                using (var conn = new SQLiteConnection(Connectionstring))
+                try
                 {
-                    conn.Open();
 
-                    //Todo: If item doesn't exist, return error. Use Post Get(id). 
-                    // Won't be a problem in the browser, but as an API, it's better to give too feedback.
-                    //CODE EXAMPLE BELOW
-                   
 
-                    string query = $"DELETE FROM {TableName} WHERE id = {id}";
-                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+
+                    using (var conn = new SQLiteConnection(Connectionstring))
                     {
-                        cmd.ExecuteNonQuery();
+                        conn.Open();
+
+                        //Todo: If item doesn't exist, return error. Use Post Get(id). 
+                        // Won't be a problem in the browser, but as an API, it's better to give too feedback.
+                        //CODE EXAMPLE BELOW
+
+
+                        string query = $"DELETE FROM {TableName} WHERE id = {id}";
+                        using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        result = true;
+
+
+                        conn.Close();
                     }
-                    result = true;
-                    conn.Close();
+                } catch (SQLiteException ex)
+                {
+                    Console.WriteLine(ex.ToString());
                 }
             }
 
