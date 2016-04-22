@@ -56,9 +56,10 @@ namespace BlogNancy.DataProviders
         {
             List<Post> allPosts = new List<Post>();
 
-            try
-            {
+           
                 using (var conn = new SQLiteConnection(Connectionstring))
+                {
+                try
                 {
                     conn.Open();
 
@@ -86,12 +87,13 @@ namespace BlogNancy.DataProviders
 
                     conn.Close();
                 }
+                catch (SQLiteException ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
-            //Useless try-catch, I need to handle it meaningfully
-            catch (SQLiteException ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
+            
+            
             return allPosts;
         }
 
@@ -103,9 +105,10 @@ namespace BlogNancy.DataProviders
         public Post Get(int id)
         {
             Post post = new Post();
-            try
+
+            using (var conn = new SQLiteConnection(Connectionstring))
             {
-                using (var conn = new SQLiteConnection(Connectionstring))
+                try
                 {
                     conn.Open();
 
@@ -127,11 +130,12 @@ namespace BlogNancy.DataProviders
                         }
                     }
                     conn.Close();
+
                 }
-            }
-            catch (SQLiteException ex)
-            {
-                Console.WriteLine(ex.ToString());
+                catch (SQLiteException ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
             return post;
         }
